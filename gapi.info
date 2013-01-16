@@ -1,5 +1,0 @@
-name = "General API"
-description = "A General purpose API integration pattern. This is an API module that provides other modules a robust pattern with which to integrate their service with Drupal"
-core = 7.x
-
-files[] = GAPI.inc
