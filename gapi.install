@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * GAPI install file.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function gapi_requirements($phase) {
+  $requirements = array();
+
+  if ($phase == 'runtime') {
+    $t = get_t();
+    foreach (gapi_get_apis_info() as $api_name => $api_info) {
+      try {
+        $ver = gapi_get_api($api_name)->gapiGetVersion();
+        $requirements[$api_name] = array(
+          'title' => $api_info['name'],
+          'value' => $t('Version: %ver, %extra', array('%ver' => $ver, '%extra' => $api_info['extra'])),
+          'severity' => REQUIREMENT_OK,
+          'description' => $api_info['description'],
+        );
+      }
+      catch (Exception $e) {
+        $requirements[$api_name] = array(
+          'title' => $api_info['name'],
+          'value' => $t('%api_name is unavailable', array('%api_name' => $api_name)),
+          'description' => $e->getMessage(),
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+    }
+
+    if (empty($requirements)) {
+      $requirements['gapi'] = array(
+        'title' => $t('GAPI'),
+        'value' => $t('No valid API modues are installed'),
+        'severity' => REQUIREMENT_WARNING,
+        'description' => $t('The GAPI module is only an API for use by other modules to provide a robust pattern by which to connect other services to Drupal. You presently have no compatible API modules installed.'),
+      );
+
+    }
+  }
+
+  return $requirements;
+}
