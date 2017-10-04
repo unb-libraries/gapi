@@ -1,0 +1,10 @@
+services:
+  gapi.client:
+    class: '\Drupal\gapi\Client\Client'
+    arguments: ['@key.repository']
+  plugin.manager.gapi_service:
+    class: '\Drupal\gapi\Plugin\GoogleApiServicePluginManager'
+    arguments: ['@gapi.client']
+  gapi.service:
+    class: '\Drupal\gapi\Services\Factory'
+    arguments: ['plugin.manager.gapi_service']
