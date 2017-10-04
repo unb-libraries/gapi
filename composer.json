@@ -3,7 +3,8 @@
     "description": "A minimal configuration manager and wrapper around the Google APIs Client Library",
     "type": "module",
     "require": {
-        "google/apiclient": "^2.0"
+        "google/apiclient": "^2.0",
+        "drupal/key": "^1.0"
     },
     "license": "GPL",
     "authors": [

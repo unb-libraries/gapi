@@ -4,6 +4,12 @@ It does/and will only do two things:
   - Provide a simple to administer authentication settings page
   - Provide a single service which can be used to obtain an authenticated client to the various supported Google services, like Google Calendar, Google Drive, etc.
 
+Requirements:
+  - Key module (https://www.drupal.org/project/key)
+  - Google API Client (https://github.com/google/google-api-php-client)
+
+Installing via composer will automatically download all required libraries.
+
 Notes:
   - This module is meant to be used as a base by other modules providing deeper integration to various Google services. This module only provides an authenticated client via a service can be injected into your controllers/blocks/plugins/etc.
   - For a list of the various Google services which could be supported, see the separate google-api-php-client-services repository.
