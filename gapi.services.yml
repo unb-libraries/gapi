@@ -1,10 +1,17 @@
 services:
+  gapi.client_factory:
+    class: '\Drupal\gapi\Client\ClientFactory'
+    arguments: ['@config.factory', '@key.repository', '@logger.channel.gapi']
   gapi.client:
-    class: '\Drupal\gapi\Client\Client'
-    arguments: ['@key.repository']
+    class: '\Google_Client'
+    factory: 'gapi.client_factory:getClient'
   plugin.manager.gapi_service:
     class: '\Drupal\gapi\Plugin\GoogleApiServicePluginManager'
     arguments: ['@gapi.client']
   gapi.service:
-    class: '\Drupal\gapi\Services\Factory'
+    class: '\Drupal\gapi\Plugin\GoogleApiServiceFactory'
     arguments: ['plugin.manager.gapi_service']
+
+  logger.channel.gapi:
+    parent: logger.channel_base
+    arguments: ['gapi']

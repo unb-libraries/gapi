@@ -48,7 +48,7 @@ class SettingsForm extends ConfigFormBase {
       '#title' => $this->t('Authentication Method'),
       '#options' => [
         'developer_key' => $this->t('Simple API Access'),
-        'oauth' => $this->t('OAuth 2.0 For Webservers'),
+        'oauth' => $this->t('OAuth 2.0 for Webservers'),
         'application_credentials' => $this->t('OAuth 2.0 Service Accounts'),
       ],
       '#empty_option' => $this->t('- Select One -'),
