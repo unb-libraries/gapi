@@ -2,6 +2,7 @@
 
 namespace Drupal\gapi\Client;
 
+use Drupal\Core\Config\ImmutableConfig;
 use Drupal\key\KeyInterface;
 use \Google_Client;
 use Psr\Log\LoggerInterface;
@@ -14,9 +15,11 @@ class ApplicationCredentialsAuthenticator implements ClientAuthenticatorInterfac
   /**
    * {@inheritdoc}
    */
-  public static function authenticate(Google_Client $client, KeyInterface $key, LoggerInterface $logger) {
+  public static function authenticate(Google_Client $client, KeyInterface $key, ImmutableConfig $config, LoggerInterface $logger) {
     try {
-      $client->setAuthConfig((array) json_decode($key->getKeyValue()));
+      $client->setAuthConfig(json_decode($key->getKeyValue(), TRUE));
+      $client->setAccessType('offline');
+      $client->setScopes(explode(',', $config->get('application_scopes')));
     } catch (\Exception $e) {
       $logger->error($e->getMessage());
       return FALSE;

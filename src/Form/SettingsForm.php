@@ -93,6 +93,17 @@ class SettingsForm extends ConfigFormBase {
       ],
     ];
 
+    $form['application_scopes'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Application Scopes'),
+      '#default_value' => $config->get('application_scopes'),
+      '#states' => [
+        'visible' => [
+          ':input[name="authentication_method"]' => ['value' => 'application_credentials'],
+        ],
+      ],
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -108,6 +119,7 @@ class SettingsForm extends ConfigFormBase {
       'authentication_method',
       'developer_key',
       'application_credentials',
+      'application_scopes',
     ];
 
     foreach ($config_keys as $key) {

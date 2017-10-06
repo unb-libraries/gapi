@@ -19,6 +19,11 @@ services:
     class: '\Google_Service_Calendar'
     arguments: ['gapi_calendar']
 
+  # Example of a derivative service
+  # gapi.calendar.my_calender:
+  #   parent: gapi.calendar
+  #   arguments: ['gapi_calendar', {'subject_id': 'my@email.com'}]
+
   logger.channel.gapi:
     parent: logger.channel_base
     arguments: ['gapi']

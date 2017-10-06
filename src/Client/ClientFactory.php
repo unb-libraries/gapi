@@ -57,6 +57,7 @@ class ClientFactory {
       return $authenticator_class::authenticate(
         $client,
         $this->getKey($authentication_method),
+        $this->config,
         $this->logger
       );
     }
