@@ -2,6 +2,7 @@
 
 namespace Drupal\gapi\Client;
 
+use Drupal\Core\Config\ImmutableConfig;
 use Drupal\key\KeyInterface;
 use \Google_Client;
 use Psr\Log\LoggerInterface;
@@ -14,7 +15,7 @@ class DeveloperKeyAuthenticator implements ClientAuthenticatorInterface {
   /**
    * {@inheritdoc}
    */
-  public static function authenticate(Google_Client $client, KeyInterface $key, LoggerInterface $logger) {
+  public static function authenticate(Google_Client $client, KeyInterface $key, ImmutableConfig $config, LoggerInterface $logger) {
     $client->setDeveloperKey($key->getKeyValue());
     return TRUE;
   }
