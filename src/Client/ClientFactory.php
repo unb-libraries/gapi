@@ -3,9 +3,11 @@
 namespace Drupal\gapi\Client;
 
 use Drupal\Core\Config\ConfigFactory;
+use Drupal\gapi\Plugin\ApplicationCredentialsAuthenticator;
+use Drupal\gapi\Plugin\DeveloperKeyAuthenticator;
 use Drupal\key\KeyRepositoryInterface;
-use Psr\Log\LoggerInterface;
 use \Google_Client;
+use Psr\Log\LoggerInterface;
 
 class ClientFactory {
 
@@ -50,6 +52,11 @@ class ClientFactory {
    */
   protected function authenticate(\Google_Client $client) {
     $authentication_method = $this->config->get('authentication_method');
+
+    if (empty($authentication_method)) {
+      return FALSE;
+    }
+
     $key = $this->getKey($authentication_method);
 
     try {
