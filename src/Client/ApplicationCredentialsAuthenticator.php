@@ -17,7 +17,8 @@ class ApplicationCredentialsAuthenticator implements ClientAuthenticatorInterfac
    */
   public static function authenticate(Google_Client $client, KeyInterface $key, ImmutableConfig $config, LoggerInterface $logger) {
     try {
-      $client->setAuthConfig(json_decode($key->getKeyValue(), TRUE));
+      $credentials = json_decode($key->getKeyValue(), TRUE);
+      $client->setAuthConfig($credentials);
       $client->setAccessType('offline');
       $client->setScopes(explode(',', $config->get('application_scopes')));
     } catch (\Exception $e) {
