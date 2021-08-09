@@ -1,5 +1,5 @@
 {
-    "name": "drupal/gapi",
+    "name": "unb-libraries/gapi",
     "description": "A minimal configuration manager and wrapper around the Google APIs Client Library",
     "type": "drupal-module",
     "require": {
