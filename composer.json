@@ -6,7 +6,7 @@
         "google/apiclient": "^2.0",
         "drupal/key": "^1.0"
     },
-    "license": "GPL",
+    "license": "MIT",
     "authors": [
         {
             "name": "Gabriel SULLICE",
