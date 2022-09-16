@@ -18,6 +18,10 @@ services:
     parent: gapi.default_service_provider
     class: '\Google_Service_Calendar'
     arguments: ['gapi_calendar']
+  gapi.analyticsreporting:
+    parent: gapi.default_service_provider
+    class: '\Google_Service_AnalyticsReporting'
+    arguments: ['gapi_analyticsreporting']
 
   # Example of a derivative service
   # gapi.calendar.my_calender:
